@@ -1,17 +1,17 @@
 // ---------------------
-// CAROUSEL
+// CAROUSEL UPGRADE
 // ---------------------
 const images = document.querySelectorAll('.carousel__img');
 const lines = document.querySelectorAll('.carousel__progress .line');
-const nextBtn = document.querySelector('.carousel__control.next');
-const prevBtn = document.querySelector('.carousel__control.prev');
-
 let current = 0;
-let interval = setInterval(nextSlide, 5000);
+let interval;
 
 function showSlide(index) {
+  // Quitamos active de todos
   images.forEach(img => img.classList.remove('active'));
   lines.forEach(line => line.classList.remove('active'));
+
+  // Activamos el actual
   images[index].classList.add('active');
   lines[index].classList.add('active');
 }
@@ -21,25 +21,25 @@ function nextSlide() {
   showSlide(current);
 }
 
-function prevSlide() {
-  current = (current - 1 + images.length) % images.length;
-  showSlide(current);
-}
-
-function resetInterval() {
+function startAutoSlide() {
   clearInterval(interval);
   interval = setInterval(nextSlide, 5000);
 }
 
-nextBtn.addEventListener('click', () => {
+// Eventos de control
+document.querySelector('.carousel__control.next').addEventListener('click', () => {
   nextSlide();
-  resetInterval();
+  startAutoSlide();
 });
 
-prevBtn.addEventListener('click', () => {
-  prevSlide();
-  resetInterval();
+document.querySelector('.carousel__control.prev').addEventListener('click', () => {
+  current = (current - 1 + images.length) % images.length;
+  showSlide(current);
+  startAutoSlide();
 });
+
+// Inicializar
+startAutoSlide();
 
 // ---------------------
 // I18N (INTERNATIONALIZATION)
