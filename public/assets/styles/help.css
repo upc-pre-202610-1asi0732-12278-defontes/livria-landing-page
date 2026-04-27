@@ -133,3 +133,64 @@
     white-space: nowrap;
 }
 .contact-banner__btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+
+/* ── RESPONSIVE HELP GRID ── */
+
+/* Tablets y pantallas medianas (Menos de 1024px) */
+@media (max-width: 1024px) {
+    .help-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+        gap: 20px;
+    }
+
+    .page-hero__title {
+        font-size: 36px;
+    }
+}
+
+/* Celulares grandes (Menos de 768px) */
+@media (max-width: 768px) {
+    .help-main {
+        padding: 40px 20px 60px;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr; /* Pasos de uno en uno */
+    }
+
+    .contact-banner {
+        text-align: center;
+        justify-content: center;
+        padding: 30px 20px;
+    }
+
+    .contact-banner__btn {
+        width: 100%; /* Botón ancho total en móvil */
+    }
+}
+
+/* Celulares pequeños (Menos de 600px) */
+@media (max-width: 600px) {
+    .help-grid {
+        grid-template-columns: 1fr; /* 1 sola columna */
+        gap: 16px;
+    }
+
+    .page-hero {
+        padding: 60px 20px 40px;
+    }
+
+    .page-hero__title {
+        font-size: 28px;
+    }
+
+    .help-card {
+        padding: 24px; /* Menos padding para ganar espacio */
+    }
+
+    .help-card__icon {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+    }
+}
