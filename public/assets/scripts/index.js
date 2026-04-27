@@ -300,8 +300,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const sectionsToWatch = ['home', 'services', 'about', 'contact'];
   sectionsToWatch.forEach(id => {
     const section = document.getElementById(id);
-    if (section) observer.observe(section);
+    if (section)   observer.observe(section);
   });
+
+  // Lógica de Menú Responsive (Asegurada)
+  const burger = document.getElementById('burgerMenu');
+  const nav = document.getElementById('headerNav'); // Este es el ID que faltaba en el HTML
+  const navLinks = document.querySelectorAll('.header__nav-link');
+
+  if (burger && nav) {
+    burger.onclick = function() {
+      this.classList.toggle('active');
+      nav.classList.toggle('active');
+
+      // Bloquear scroll
+      if (nav.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'auto';
+      }
+    };
+
+    // Cerrar al clickear links
+    navLinks.forEach(link => {
+      link.onclick = () => {
+        burger.classList.remove('active');
+        nav.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      };
+    });
+  }
 
 });
 
