@@ -182,14 +182,75 @@ const i18n = {
             </div>
         `,
         "legal.complaints.content": `
-            <h2>Complaints Book</h2>
-            <p>According to local regulations, you can file a complaint or claim about our service here.</p>
-            <form class="contact__form">
-                <input type="text" placeholder="Order ID" class="contact__input" name="name">
-                <textarea placeholder="Describe your issue" class="contact__textarea" name="complaintText"></textarea>
-                <button type="button" class="btn btn--primary">Submit Claim</button>
-            </form>
-        `
+            <div class="legal-content">
+                <h2>Complaints Book</h2>
+                <p>According to local regulations, you can file a complaint or claim about our service here.</p>
+                <form class="contact__form" id="complaintsForm">
+                    <div class="contact__form-row">
+                        <div class="contact__form-group">
+                            <label class="contact__label">Full Name</label>
+                            <input type="text" name="fullName" class="contact__input" placeholder="Your full name" required>
+                        </div>
+                        <div class="contact__form-group">
+                            <label class="contact__label">Reason for complaint</label>
+                            <textarea name="contactReason" class="contact__textarea" rows="4" placeholder="Describe your issue in detail" required></textarea>
+                        </div>
+                    </div>
+                    <div class="contact__form-row">
+                        <div class="contact__form-group">
+                            <label class="contact__label">Email</label>
+                            <input type="email" name="email" class="contact__input" placeholder="your@email.com" required>
+                        </div>
+                        <div class="contact__form-group">
+                            <label class="contact__label">Order ID (optional)</label>
+                            <input type="text" name="orderId" class="contact__input" placeholder="e.g. ORD-12345">
+                        </div>
+                    </div>
+                    <div class="contact__form-row">
+                        <div class="contact__form-group">
+                            <label class="contact__label">Phone number</label>
+                            <input type="tel" name="phone" class="contact__input" placeholder="+51 999 999 999">
+                        </div>
+                    </div>
+                    <div class="contact__form-row contact__form-row--consent">
+                        <div class="contact__checkbox-group">
+                            <input type="checkbox" id="complaintConsent" class="contact__checkbox" required>
+                            <label for="complaintConsent" class="contact__checkbox-label">I agree to share my personal information with the Defontes Livria team</label>
+                        </div>
+                        <button type="button" id="complaintsSubmitBtn" class="btn btn--submit">SEND</button>
+                    </div>
+                </form>
+            </div>
+        `,
+        'help.title': 'Help Center',
+        'help.subtitle': 'Find quick answers or reach out to our team — we\'re here to help you.',
+        'help.topics.title': 'Browse by <span>Topic</span>',
+        'help.topic.app': 'Using the App',
+        'help.topic.app.desc': 'Learn how to navigate Livria, manage your account, and get the most out of every feature.',
+        'help.topic.payments': 'Payments',
+        'help.topic.payments.desc': 'Understand how our bank-transfer payment system works, receipts, and refund policies.',
+        'help.topic.delivery': 'Shipping & Delivery',
+        'help.topic.delivery.desc': 'Track your physical book orders, delivery times, and pick-up point information.',
+        'help.topic.subs': 'Subscriptions',
+        'help.topic.subs.desc': 'Manage your subscription plan, billing cycle, and how to upgrade or cancel anytime.',
+        'help.topic.catalog': 'Catalog & E-books',
+        'help.topic.catalog.desc': 'How to download e-books, access your library, and discover new titles through recommendations.',
+        'help.topic.contact': 'Contact Support',
+        'help.topic.contact.desc': 'Didn\'t find what you need? Our team is ready to help you directly via our contact form.',
+        'help.readmore': 'See answers <i class="fas fa-arrow-right"></i>',
+        'help.contact.link': 'Go to contact <i class="fas fa-arrow-right"></i>',
+        'help.steps.title': 'Getting <span>Started</span>',
+        'help.step1.title': 'Download the app',
+        'help.step1.desc': 'Livria is available on Google Play and the App Store. Install it for free and create your account in seconds.',
+        'help.step2.title': 'Set up your profile',
+        'help.step2.desc': 'Tell us your reading preferences so our algorithms can start personalizing recommendations just for you.',
+        'help.step3.title': 'Browse the catalog',
+        'help.step3.desc': 'Explore thousands of titles — physical books, e-books, and audiobooks — all in one place.',
+        'help.step4.title': 'Buy & enjoy',
+        'help.step4.desc': 'Purchase your books securely and receive them at your door or download them instantly to start reading.',
+        'help.banner.title': 'Still need help?',
+        'help.banner.desc': 'Our support team responds within 24 hours on business days.',
+        'help.banner.btn': 'CONTACT US',
     },
     // Spanish
     es: {
@@ -373,13 +434,74 @@ const i18n = {
             </div>
         `,
         "legal.complaints.content": `
-            <h2>Libro de Reclamaciones</h2>
-            <p>Conforme a las normas de protección al consumidor, puedes registrar una queja o reclamo aquí.</p>
-            <form class="contact__form">
-                <input type="text" placeholder="ID de Pedido" class="contact__input" name="name">
-                <textarea placeholder="Describe el inconveniente" class="contact__textarea" name="complaintText"></textarea>
-                <button type="button" class="btn btn--primary">Enviar Reclamo</button>
-            </form>
-        `
+            <div class="legal-content">
+                <h2>Libro de Reclamaciones</h2>
+                <p>Conforme a las normas de protección al consumidor, puedes registrar una queja o reclamo aquí.</p>
+                <form class="contact__form" id="complaintsForm">
+                    <div class="contact__form-row">
+                        <div class="contact__form-group">
+                            <label class="contact__label">Nombre completo</label>
+                            <input type="text" name="fullName" class="contact__input" placeholder="Tu nombre completo" required>
+                        </div>
+                        <div class="contact__form-group">
+                            <label class="contact__label">Motivo de reclamación</label>
+                            <textarea name="contactReason" class="contact__textarea" rows="4" placeholder="Describe el inconveniente en detalle" required></textarea>
+                        </div>
+                    </div>
+                    <div class="contact__form-row">
+                        <div class="contact__form-group">
+                            <label class="contact__label">Correo electrónico</label>
+                            <input type="email" name="email" class="contact__input" placeholder="tu@correo.com" required>
+                        </div>
+                        <div class="contact__form-group">
+                            <label class="contact__label">ID de Pedido (opcional)</label>
+                            <input type="text" name="orderId" class="contact__input" placeholder="Ej. ORD-12345">
+                        </div>
+                    </div>
+                    <div class="contact__form-row">
+                        <div class="contact__form-group">
+                            <label class="contact__label">Número de teléfono</label>
+                            <input type="tel" name="phone" class="contact__input" placeholder="+51 999 999 999">
+                        </div>
+                    </div>
+                    <div class="contact__form-row contact__form-row--consent">
+                        <div class="contact__checkbox-group">
+                            <input type="checkbox" id="complaintConsent" class="contact__checkbox" required>
+                            <label for="complaintConsent" class="contact__checkbox-label">Acepto compartir mi información personal con el equipo de Defontes Livria</label>
+                        </div>
+                        <button type="button" id="complaintsSubmitBtn" class="btn btn--submit">ENVIAR</button>
+                    </div>
+                </form>
+            </div>
+        `,
+        'help.title': 'Centro de Ayuda',
+        'help.subtitle': 'Encuentra respuestas rápidas o comunícate con nuestro equipo — estamos aquí para ayudarte.',
+        'help.topics.title': 'Explorar por <span>Tema</span>',
+        'help.topic.app': 'Usando la App',
+        'help.topic.app.desc': 'Aprende a navegar Livria, gestionar tu cuenta y sacar el máximo provecho de cada función.',
+        'help.topic.payments': 'Pagos',
+        'help.topic.payments.desc': 'Entiende cómo funciona nuestro sistema de pago por transferencia bancaria, recibos y política de reembolsos.',
+        'help.topic.delivery': 'Envíos y Entrega',
+        'help.topic.delivery.desc': 'Rastrea tus pedidos de libros físicos, tiempos de entrega e información sobre puntos de recojo.',
+        'help.topic.subs': 'Suscripciones',
+        'help.topic.subs.desc': 'Gestiona tu plan, ciclo de facturación y cómo actualizar o cancelar en cualquier momento.',
+        'help.topic.catalog': 'Catálogo y E-books',
+        'help.topic.catalog.desc': 'Cómo descargar e-books, acceder a tu biblioteca y descubrir nuevos títulos.',
+        'help.topic.contact': 'Contactar Soporte',
+        'help.topic.contact.desc': '¿No encontraste lo que necesitas? Nuestro equipo está listo para ayudarte directamente.',
+        'help.readmore': 'Ver respuestas <i class="fas fa-arrow-right"></i>',
+        'help.contact.link': 'Ir al contacto <i class="fas fa-arrow-right"></i>',
+        'help.steps.title': 'Cómo <span>Empezar</span>',
+        'help.step1.title': 'Descarga la app',
+        'help.step1.desc': 'Livria está disponible en Google Play y App Store. Instálala gratis y crea tu cuenta en segundos.',
+        'help.step2.title': 'Configura tu perfil',
+        'help.step2.desc': 'Cuéntanos tus preferencias de lectura para que nuestros algoritmos personalicen tus recomendaciones.',
+        'help.step3.title': 'Explora el catálogo',
+        'help.step3.desc': 'Descubre miles de títulos — libros físicos, e-books y audiolibros — todo en un solo lugar.',
+        'help.step4.title': 'Compra y disfruta',
+        'help.step4.desc': 'Adquiere tus libros de forma segura y recíbelos en casa o descárgalos al instante para empezar a leer.',
+        'help.banner.title': '¿Aún necesitas ayuda?',
+        'help.banner.desc': 'Nuestro equipo de soporte responde dentro de las 24 horas en días hábiles.',
+        'help.banner.btn': 'CONTÁCTANOS',
     }
 };

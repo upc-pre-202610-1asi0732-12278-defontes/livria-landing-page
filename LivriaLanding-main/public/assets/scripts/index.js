@@ -7,7 +7,7 @@
 
 const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dd2fmyphr/image/upload';
 const CLOUDINARY_PRESET = 'livria_preset';
-let currentLanguage = 'en'; // ← se sobreescribirá en DOMContentLoaded
+let currentLanguage = 'en';
 
 // 2. FUNCIÓN DE TRADUCCIÓN (GLOBAL)
 window.translatePage = function(lang) {
@@ -36,6 +36,7 @@ window.translatePage = function(lang) {
   });
 };
 
+// 3. TODO dentro de DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
 
   // ── Idioma ──────────────────────────────────────────────
@@ -51,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ── Carousel ─────────────────────────────────────────────
-  // ⚠ Mover AQUÍ dentro, no fuera del DOMContentLoaded
   const images = document.querySelectorAll('.carousel__img');
   const lines  = document.querySelectorAll('.carousel__progress .line');
   let current  = 0;
@@ -96,33 +96,58 @@ document.addEventListener('DOMContentLoaded', () => {
     const legalLink = e.target.closest('.footer__link[data-legal]');
     if (legalLink) {
       e.preventDefault();
-      const type     = legalLink.getAttribute('data-legal');
-      const modal    = document.getElementById('legalModal');
+      const type      = legalLink.getAttribute('data-legal');
+      const modal     = document.getElementById('legalModal');
       const modalBody = document.getElementById('modalBody');
+      const content   = window.i18n?.[currentLanguage]?.[`legal.${type}.content`];
 
-      // DEBUG: verifica qué hay en tus traducciones
-      console.log('Legal type:', type);
-      console.log('Lang:', currentLanguage);
-      console.log('i18n object:', window.i18n?.[currentLanguage]);
-      console.log('Key buscada:', `legal.${type}.content`);
-
-      const content = window.i18n?.[currentLanguage]?.[`legal.${type}.content`];
-
-      if (!content) {
-        console.error(`⚠ Falta la clave "legal.${type}.content" en i18n.js para el idioma "${currentLanguage}"`);
-        // Mostrar modal con mensaje de fallback igual
-        if (modal && modalBody) {
-          modalBody.innerHTML = `<p>Content not available yet.</p>`;
-          modal.style.display = 'block';
-          document.body.style.overflow = 'hidden';
-        }
-        return;
-      }
-
-      if (modal && modalBody) {
+      if (modal && modalBody && content) {
         modalBody.innerHTML = content;
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
+
+        // ── Formulario de Reclamaciones (solo si aplica) ──
+        const complaintsBtn = document.getElementById('complaintsSubmitBtn');
+        if (complaintsBtn) {
+          complaintsBtn.addEventListener('click', async () => {
+            const form     = document.getElementById('complaintsForm');
+            const fullName = form.querySelector('[name="fullName"]').value.trim();
+            const email    = form.querySelector('[name="email"]').value.trim();
+            const reason   = form.querySelector('[name="contactReason"]').value.trim();
+            const phone    = form.querySelector('[name="phone"]').value.trim();
+            const orderId  = form.querySelector('[name="orderId"]').value.trim();
+            const consent  = form.querySelector('#complaintConsent').checked;
+
+            if (!fullName || !email || !reason || !consent) {
+              alert(currentLanguage === 'es'
+                  ? 'Por favor completa todos los campos obligatorios.'
+                  : 'Please fill in all required fields.');
+              return;
+            }
+
+            complaintsBtn.disabled = true;
+            complaintsBtn.textContent = '...';
+
+            try {
+              await emailjs.send('service_4t97z5d', 'template_mq4xh6g', {
+                full_name : fullName,
+                email     : email,
+                reason    : `[COMPLAINT] Order: ${orderId || 'N/A'} — ${reason}`,
+                form_type : 'Complaints Book',
+                my_file   : `Phone: ${phone || 'N/A'}`
+              });
+
+              form.innerHTML = `
+                <div class="contact__success-message">
+                  ${window.i18n[currentLanguage]['contact.success']}
+                </div>`;
+            } catch (err) {
+              console.error(err);
+              complaintsBtn.disabled = false;
+              complaintsBtn.textContent = currentLanguage === 'es' ? 'ENVIAR' : 'SEND';
+            }
+          });
+        }
       }
       return;
     }
@@ -146,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ── Formulario de Contacto ───────────────────────────────
+  // ── Formulario de Contacto principal ────────────────────
   const contactForm = document.getElementById('contactForm');
   const fileInput   = document.getElementById('cvUpload');
   const fileButton  = document.querySelector('.contact__file-button');
@@ -195,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (err) {
         console.error(err);
         btn.disabled = false;
-        btn.textContent = 'SEND';
+        btn.textContent = currentLanguage === 'es' ? 'ENVIAR' : 'SEND';
       }
     });
   }
