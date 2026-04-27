@@ -1,222 +1,205 @@
-// ---------------------
-// CAROUSEL UPGRADE
-// ---------------------
-const images = document.querySelectorAll('.carousel__img');
-const lines = document.querySelectorAll('.carousel__progress .line');
-let current = 0;
-let interval;
+// 1. CONFIGURACIÓN INICIAL
+(function() {
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init("9sYY-fTEKMm4wPX-k");
+  }
+})();
 
-function showSlide(index) {
-  // Quitamos active de todos
-  images.forEach(img => img.classList.remove('active'));
-  lines.forEach(line => line.classList.remove('active'));
+const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dd2fmyphr/image/upload';
+const CLOUDINARY_PRESET = 'livria_preset';
+let currentLanguage = 'en'; // ← se sobreescribirá en DOMContentLoaded
 
-  // Activamos el actual
-  images[index].classList.add('active');
-  lines[index].classList.add('active');
-}
-
-function nextSlide() {
-  current = (current + 1) % images.length;
-  showSlide(current);
-}
-
-function startAutoSlide() {
-  clearInterval(interval);
-  interval = setInterval(nextSlide, 5000);
-}
-
-// Eventos de control
-document.querySelector('.carousel__control.next').addEventListener('click', () => {
-  nextSlide();
-  startAutoSlide();
-});
-
-document.querySelector('.carousel__control.prev').addEventListener('click', () => {
-  current = (current - 1 + images.length) % images.length;
-  showSlide(current);
-  startAutoSlide();
-});
-
-// Inicializar
-startAutoSlide();
-
-// ---------------------
-// I18N (INTERNATIONALIZATION)
-// ---------------------
-let currentLanguage = 'en';
-
-const translatePage = (lang) => {
-  document.querySelectorAll('.language-btn').forEach(btn => {
-    btn.setAttribute('aria-pressed', btn.dataset.lang === lang);
-  });
-
+// 2. FUNCIÓN DE TRADUCCIÓN (GLOBAL)
+window.translatePage = function(lang) {
+  currentLanguage = lang;
   document.documentElement.lang = lang;
+  localStorage.setItem('livria-language', lang);
+
+  const translations = window.i18n || {};
+
+  if (!translations[lang]) {
+    console.error("No se encontraron traducciones para:", lang);
+    return;
+  }
 
   document.querySelectorAll('[data-i18n]').forEach(element => {
     const key = element.getAttribute('data-i18n');
-    if (i18n[lang] && i18n[lang][key]) {
-      element.textContent = i18n[lang][key];
+    if (translations[lang][key] !== undefined) {
+      element.innerHTML = translations[lang][key];
     }
   });
 
-  localStorage.setItem('livria-language', lang);
-  currentLanguage = lang;
+  document.querySelectorAll('.language-btn').forEach(btn => {
+    const isActive = btn.dataset.lang === lang;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-pressed', String(isActive));
+  });
 };
 
-// ---------------------
-// DOMContentLoaded Initialization
-// ---------------------
 document.addEventListener('DOMContentLoaded', () => {
-  // Init language
-  const savedLanguage = localStorage.getItem('livria-language');
-  const browserLanguage = navigator.language.startsWith('es') ? 'es' : 'en';
-  const initialLanguage = savedLanguage || browserLanguage;
-  translatePage(initialLanguage);
 
-  // Language switcher
+  // ── Idioma ──────────────────────────────────────────────
+  const savedLanguage = localStorage.getItem('livria-language')
+      || (navigator.language.startsWith('es') ? 'es' : 'en');
+  window.translatePage(savedLanguage);
+
   document.querySelectorAll('.language-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const lang = btn.dataset.lang;
-      translatePage(lang);
-    });
-  });
-
-  // Navigation links
-  const allScrollLinks = document.querySelectorAll(
-    '.header__nav-link, .btn--text[href^="#"], .footer__link[href^="#"]'
-  );
-
-  allScrollLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        
-        if (link.classList.contains('header__nav-link')) {
-             document.querySelectorAll('.header__nav-link').forEach(l => l.classList.remove('active'));
-             link.classList.add('active');
-        }
-
-        if (link.getAttribute('href').startsWith('#')) {
-            e.preventDefault();
-            const targetId = link.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    });
-});
-
-  // Keyboard accessibility
-  document.querySelectorAll('.language-btn, .header__nav-link, .btn').forEach(element => {
-    element.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        element.click();
-      }
-    });
-  });
-
-  // File upload handling
-  const fileInput = document.getElementById('cvUpload');
-  const fileButton = document.querySelector('.contact__file-button');
-  
-  if (fileInput && fileButton) {
-    fileInput.addEventListener('change', () => {
-      if (fileInput.files.length > 0) {
-        const fileName = fileInput.files[0].name;
-        fileButton.textContent = fileName.length > 20 ? 
-          fileName.substring(0, 17) + '...' : fileName;
-      } else {
-        fileButton.textContent = i18n[currentLanguage]['contact.upload'] || 'Add file';
-      }
-    });
-    
-    fileButton.addEventListener('click', () => {
-      fileInput.click();
-    });
-    
-    // Keyboard accessibility for file button
-    fileButton.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        fileInput.click();
-      }
-    });
-    fileButton.setAttribute('tabindex', '0');
-  }
-  
-  // Form submission
-  const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    btn.addEventListener('click', (e) => {
       e.preventDefault();
-      
-      // Form validation
-      if (contactForm.checkValidity()) {
-        // Collect form data
+      window.translatePage(btn.dataset.lang);
+    });
+  });
+
+  // ── Carousel ─────────────────────────────────────────────
+  // ⚠ Mover AQUÍ dentro, no fuera del DOMContentLoaded
+  const images = document.querySelectorAll('.carousel__img');
+  const lines  = document.querySelectorAll('.carousel__progress .line');
+  let current  = 0;
+  let carouselInterval;
+
+  function showSlide(index) {
+    if (!images.length) return;
+    images.forEach(img  => img.classList.remove('active'));
+    lines.forEach(line  => line.classList.remove('active'));
+    images[index].classList.add('active');
+    lines[index].classList.add('active');
+  }
+
+  function nextSlide() {
+    current = (current + 1) % images.length;
+    showSlide(current);
+  }
+
+  if (images.length) {
+    carouselInterval = setInterval(nextSlide, 5000);
+
+    document.querySelector('.carousel__control.next')
+        ?.addEventListener('click', () => {
+          nextSlide();
+          clearInterval(carouselInterval);
+          carouselInterval = setInterval(nextSlide, 5000);
+        });
+
+    document.querySelector('.carousel__control.prev')
+        ?.addEventListener('click', () => {
+          current = (current - 1 + images.length) % images.length;
+          showSlide(current);
+          clearInterval(carouselInterval);
+          carouselInterval = setInterval(nextSlide, 5000);
+        });
+  }
+
+  // ── Delegación de eventos ────────────────────────────────
+  document.addEventListener('click', (e) => {
+
+    // Popups Legales
+    const legalLink = e.target.closest('.footer__link[data-legal]');
+    if (legalLink) {
+      e.preventDefault();
+      const type     = legalLink.getAttribute('data-legal');
+      const modal    = document.getElementById('legalModal');
+      const modalBody = document.getElementById('modalBody');
+
+      // DEBUG: verifica qué hay en tus traducciones
+      console.log('Legal type:', type);
+      console.log('Lang:', currentLanguage);
+      console.log('i18n object:', window.i18n?.[currentLanguage]);
+      console.log('Key buscada:', `legal.${type}.content`);
+
+      const content = window.i18n?.[currentLanguage]?.[`legal.${type}.content`];
+
+      if (!content) {
+        console.error(`⚠ Falta la clave "legal.${type}.content" en i18n.js para el idioma "${currentLanguage}"`);
+        // Mostrar modal con mensaje de fallback igual
+        if (modal && modalBody) {
+          modalBody.innerHTML = `<p>Content not available yet.</p>`;
+          modal.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+        }
+        return;
+      }
+
+      if (modal && modalBody) {
+        modalBody.innerHTML = content;
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      }
+      return;
+    }
+
+    // Cerrar Modal
+    const modal = document.getElementById('legalModal');
+    if (modal && modal.style.display === 'block') {
+      if (e.target.classList.contains('modal__close') || e.target === modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    // Smooth Scroll
+    const scrollLink = e.target.closest('a[href^="#"]');
+    if (scrollLink && !scrollLink.hasAttribute('data-legal')) {
+      const targetId = scrollLink.getAttribute('href');
+      if (targetId === '#') return;
+      e.preventDefault();
+      document.querySelector(targetId)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+
+  // ── Formulario de Contacto ───────────────────────────────
+  const contactForm = document.getElementById('contactForm');
+  const fileInput   = document.getElementById('cvUpload');
+  const fileButton  = document.querySelector('.contact__file-button');
+
+  if (fileButton && fileInput) {
+    fileButton.onclick = () => fileInput.click();
+    fileInput.onchange = () => {
+      const name = fileInput.files[0]?.name;
+      if (name) fileButton.textContent = name.length > 15
+          ? name.substring(0, 12) + '...'
+          : name;
+    };
+  }
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = contactForm.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = '...';
+
+      try {
+        let fileUrl = 'No file';
+        if (fileInput?.files[0]) {
+          const cloudData = new FormData();
+          cloudData.append('file', fileInput.files[0]);
+          cloudData.append('upload_preset', CLOUDINARY_PRESET);
+          const res  = await fetch(CLOUDINARY_URL, { method: 'POST', body: cloudData });
+          const data = await res.json();
+          fileUrl = data.secure_url || 'Upload error';
+        }
+
         const formData = new FormData(contactForm);
-        
-        // Here you would typically send the data to your server
-        // For now, we'll just simulate a successful submission
-        
-        // Show success message
-        const successMessage = document.createElement('div');
-        successMessage.className = 'contact__success-message';
-        successMessage.textContent = i18n[currentLanguage]['contact.success'] || 
-          'Thank you! Your message has been sent successfully.';
-        
-        contactForm.innerHTML = '';
-        contactForm.appendChild(successMessage);
-        
-        // Reset form after 3 seconds for demo purposes
-        setTimeout(() => {
-          contactForm.reset();
-          contactForm.innerHTML = '';
-          // Rerender the form (this would be handled differently in production)
-          location.reload();
-        }, 3000);
-      } else {
-        // Browser will handle showing validation messages
+        await emailjs.send('service_4t97z5d', 'template_mq4xh6g', {
+          full_name : formData.get('fullName')      || 'User',
+          email     : formData.get('email'),
+          reason    : formData.get('contactReason') || 'No message',
+          form_type : 'CV Contact',
+          my_file   : fileUrl
+        });
+
+        contactForm.innerHTML = `
+          <div class="contact__success-message">
+            ${window.i18n[currentLanguage]['contact.success']}
+          </div>`;
+      } catch (err) {
+        console.error(err);
+        btn.disabled = false;
+        btn.textContent = 'SEND';
       }
     });
   }
 
-   // Footer navigation smooth scroll
-   const footerLinks = document.querySelectorAll('.footer__link');
-   footerLinks.forEach(link => {
-     if (link.getAttribute('href').startsWith('#')) {
-       link.addEventListener('click', (e) => {
-         e.preventDefault();
-         const targetId = link.getAttribute('href');
-         const targetElement = document.querySelector(targetId);
-         if (targetElement) {
-           targetElement.scrollIntoView({ behavior: 'smooth' });
-         }
-       });
-     }
-   });
-   
-   // Footer language selector
-   const footerLanguageBtns = document.querySelectorAll('.footer__language-btn');
-   footerLanguageBtns.forEach(btn => {
-     btn.addEventListener('click', () => {
-       const lang = btn.dataset.lang;
-       translatePage(lang);
-     });
-   });
- 
-   // Synchronize header and footer language buttons
-   const syncLanguageUI = (lang) => {
-     document.querySelectorAll('.language-btn').forEach(btn => {
-       btn.setAttribute('aria-pressed', btn.dataset.lang === lang);
-     });
-   };
-   
-   // Update the translatePage function to use syncLanguageUI
-   const originalTranslatePage = window.translatePage;
-   window.translatePage = (lang) => {
-     originalTranslatePage(lang);
-     syncLanguageUI(lang);
-   };
-
 });
+
+window.i18n = i18n;

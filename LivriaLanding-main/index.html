@@ -33,7 +33,7 @@
 <body>
   <header class="header">
     <div class="livria__logo">
-      <img src="public/assets/images/logo/app_web/logo_icon.svg" alt="Livria Logo">
+      <a  href="#home"><img src="public/assets/images/logo/app_web/logo_icon.svg" alt="Livria Logo"></a>
     </div>
     <nav class="header__nav" aria-label="Main Navigation">
       <ul class="header__nav-list">
@@ -192,7 +192,7 @@
           <span data-i18n="about.livria.tag">LIVRIA</span>
         </div>
         <div class="about__text">
-          <p class="about__paragraph" data-i18n="about.livria.description">
+          <p class="about__paragraph derechaa" data-i18n="about.livria.description">
             Livria is a mobile application designed to revolutionize the way 
             people acquire and enjoy books. Through an intuitive and 
             accessible platform, it offers a wide selection of titles, allowing 
@@ -290,7 +290,7 @@
         <i class="fab fa-twitter"></i>
     </a>
     
-    <a href="https://www.instagram.com/LIVRIA" class="footer__social-link" aria-label="Instagram" target="_blank">
+    <a href="https://www.instagram.com/livria_bydefontes?igsh=MWI4a2s4ZWkwbzVpcA==" class="footer__social-link" aria-label="Instagram" target="_blank">
         <i class="fab fa-instagram"></i>
     </a>
     
@@ -309,14 +309,14 @@
             <li><a href="#contact" class="footer__link" data-i18n="nav.contact">Contact us</a></li>
           </ul>
         </div>
-        
+
         <div class="footer__column">
           <h3 class="footer__heading" data-i18n="footer.legal">Legal</h3>
           <ul class="footer__links">
-            <li><a href="#" class="footer__link" data-i18n="footer.terms">Terms and Conditions</a></li>
-            <li><a href="#" class="footer__link" data-i18n="footer.privacy">Privacy Policy</a></li>
-            <li><a href="#" class="footer__link" data-i18n="footer.cookies">Cookies Policy</a></li>
-            <li><a href="#" class="footer__link" data-i18n="footer.complaints">Complaints Book</a></li>
+            <li><a href="#" class="footer__link" data-legal="terms" data-i18n="footer.terms">Terms and Conditions</a></li>
+            <li><a href="#" class="footer__link" data-legal="privacy" data-i18n="footer.privacy">Privacy Policy</a></li>
+            <li><a href="#" class="footer__link" data-legal="cookies" data-i18n="footer.cookies">Cookies Policy</a></li>
+            <li><a href="#" class="footer__link" data-legal="complaints" data-i18n="footer.complaints">Complaints Book</a></li>
           </ul>
         </div>
         
@@ -340,10 +340,21 @@
     </div>
   </footer>
 
+  <div id="legalModal" class="modal">
+    <div class="modal__content">
+      <span class="modal__close">&times;</span>
+      <div id="modalBody">
+      </div>
+    </div>
+  </div>
+
   <link rel="preload" href="public/assets/fonts/Asap-Condensed/AsapCondensed-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="public/assets/fonts/Alexandria/Alexandria-Regular.woff2" as="font" type="font/woff2" crossorigin>
 
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
   <script src="public/assets/scripts/i18n.js"></script>
+
   <script src="public/assets/scripts/index.js"></script>
 
 </body>
