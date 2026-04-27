@@ -47,7 +47,7 @@
 </div>
 
 <div id="help" class="page-hero">
-    <div class="page-hero__icon"><i class="fas fa-life-ring"></i></div>
+    <div class="page-hero__icon"><i class="fas fa-question"></i></div>
     <h1 class="page-hero__title" data-i18n="help.title">Help Center</h1>
     <p class="page-hero__subtitle" data-i18n="help.subtitle">Find quick answers or reach out to our team — we're here to help you.</p>
 </div>
@@ -180,6 +180,15 @@
                 </ul>
             </div>
             <div class="footer__column">
+                <h3 class="footer__heading" data-i18n="footer.legal">Legal</h3>
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link" data-legal="terms" data-i18n="footer.terms">Terms and Conditions</a></li>
+                    <li><a href="#" class="footer__link" data-legal="privacy" data-i18n="footer.privacy">Privacy Policy</a></li>
+                    <li><a href="#" class="footer__link" data-legal="cookies" data-i18n="footer.cookies">Cookies Policy</a></li>
+                    <li><a href="#" class="footer__link" data-legal="complaints" data-i18n="footer.complaints">Complaints Book</a></li>
+                </ul>
+            </div>
+            <div class="footer__column">
                 <h3 class="footer__heading" data-i18n="footer.support">Support</h3>
                 <ul class="footer__links">
                     <li><a href="help.html" class="footer__link" data-i18n="footer.help">Help</a></li>
@@ -198,6 +207,15 @@
     </div>
 </footer>
 
+<div id="legalModal" class="modal">
+    <div class="modal__content">
+        <span class="modal__close">&times;</span>
+        <div id="modalBody">
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script src="public/assets/scripts/i18n.js"></script>
 <script src="public/assets/scripts/index.js"></script>
 </body>

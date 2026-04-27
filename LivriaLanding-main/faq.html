@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ – Livria</title>
+  <meta name="description" content="Frequently asked questions about Livria — app, payments, delivery, and subscriptions.">
+
+  <link rel="icon" type="image/x-icon" href="public/assets/images/logo/startup/favicon.ico" sizes="32x32"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <link href="https://unpkg.com/@csstools/normalize.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="public/assets/styles/components/fonts.css">
+  <link rel="stylesheet" href="public/assets/styles/components/variables.css">
+
+  <link rel="stylesheet" href="public/assets/styles/index.css"> <!-- Main CSS -->
+  <link rel="stylesheet" href="public/assets/styles/faq.css"> <!-- FAQ CSS -->
+</head>
+<body>
+
+<header class="header">
+  <div class="livria__logo">
+    <a href="index.html"><img src="public/assets/images/logo/app_web/logo_icon.svg" alt="Livria Logo"></a>
+  </div>
+  <nav class="header__nav" aria-label="Main Navigation">
+    <ul class="header__nav-list">
+      <li class="header__nav-item"><a href="index.html#home" class="header__nav-link" data-i18n="nav.home">Home</a></li>
+      <li class="header__nav-item"><a href="index.html#services" class="header__nav-link" data-i18n="nav.services">Services</a></li>
+      <li class="header__nav-item"><a href="index.html#about" class="header__nav-link" data-i18n="nav.about">About us</a></li>
+      <li class="header__nav-item"><a href="index.html#contact" class="header__nav-link" data-i18n="nav.contact">Contact us</a></li>
+    </ul>
+  </nav>
+  <div class="header__language-selector">
+    <button class="language-btn" data-lang="en" aria-pressed="true">EN</button>
+    <button class="language-btn" data-lang="es" aria-pressed="false">ES</button>
+  </div>
+</header>
+
+<div class="color-bar">
+  <div class="color-bar__section color-bar__section--orange"></div>
+  <div class="color-bar__section color-bar__section--yellow"></div>
+  <div class="color-bar__section color-bar__section--light-yellow"></div>
+  <div class="color-bar__section color-bar__section--dark-blue"></div>
+  <div class="color-bar__section color-bar__section--light"></div>
+  <div class="color-bar__section color-bar__section--teal"></div>
+  <div class="color-bar__section color-bar__section--blue"></div>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero__icon"><i class="fas fa-circle-question"></i></div>
+  <h1 class="page-hero__title" data-i18n="faq.title">Frequent Questions</h1>
+  <p class="page-hero__subtitle" data-i18n="faq.subtitle">Everything you need to know about Livria, in one place.</p>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all" data-i18n="faq.filter.all">All</button>
+    <button class="filter-btn" data-filter="app" data-i18n="faq.filter.app">App</button>
+    <button class="filter-btn" data-filter="payments" data-i18n="faq.filter.payments">Payments</button>
+    <button class="filter-btn" data-filter="delivery" data-i18n="faq.filter.delivery">Delivery</button>
+    <button class="filter-btn" data-filter="subscriptions" data-i18n="faq.filter.subscriptions">Subscriptions</button>
+  </div>
+</div>
+
+<main class="faq-main">
+
+  <!-- APP -->
+  <section class="faq-section" id="app" data-category="app">
+    <div class="faq-section__header">
+      <div class="faq-section__icon faq-section__icon--app"><i class="fas fa-mobile-alt"></i></div>
+      <h2 class="faq-section__title" data-i18n="faq.app.title">Using the App</h2>
+    </div>
+    <div class="accordion">
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="accordion-trigger__q" data-i18n="faq.app.q1">How do I create an account on Livria?</span>
+          <span class="accordion-trigger__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-body">
+          <p data-i18n="faq.app.a1">Download the app from Google Play or the App Store, open it, and tap "Sign Up". Enter your name, email, and a password. You'll receive a confirmation email — click the link inside and your account is ready to use.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="accordion-trigger__q" data-i18n="faq.app.q2">Can I use Livria on multiple devices?</span>
+          <span class="accordion-trigger__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-body">
+          <p data-i18n="faq.app.a2">Yes. Log in with your account credentials on any device. Your library, reading progress, and preferences sync automatically across all your devices.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="accordion-trigger__q" data-i18n="faq.app.q3">How do the smart recommendations work?</span>
+          <span class="accordion-trigger__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-body">
+          <p data-i18n="faq.app.a3">Our algorithm analyzes your reading history, ratings, genres you browse, and community activity to suggest books tailored to your taste. The more you use Livria, the more accurate the suggestions become.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="accordion-trigger__q" data-i18n="faq.app.q4">How do I download an e-book to read offline?</span>
+          <span class="accordion-trigger__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-body">
+          <p data-i18n="faq.app.a4">After purchasing an e-book, open it from your Library and tap the download icon. The book will be saved to your device and accessible even without an internet connection.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="accordion-trigger__q" data-i18n="faq.app.q5">How do I join a reading community?</span>
+          <span class="accordion-trigger__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-body">
+          <p data-i18n="faq.app.a5">Go to the "Communities" tab in the app, browse groups by genre or topic, and tap "Join". You'll immediately have access to discussions, shared reading lists, and community events.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PAYMENTS -->
+  <section class="faq-section" id="payments" data-category="payments">
+    <div class="faq-section__header">
+      <div class="faq-section__icon faq-section__icon--pay"><i class="fas fa-credit-card"></i></div>
+      <h2 class="faq-section__title" data-i18n="faq.payments.title">Payments</h2>
+    </div>
+    <div class="accordion">
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="accordion-trigger__q" data-i18n="faq.pay.q1">How does payment work on Livria?</span>
+          <span class="accordion-trigger__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-body">
+          <p data-i18n="faq.pay.a1">Livria uses bank transfers as its primary payment method. When you place an order, you'll see our bank account details. Transfer the amount and upload a photo of the receipt in the app. Our team verifies it and processes your order — usually within a few hours.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="accordion-trigger__q" data-i18n="faq.pay.q2">How long does payment verification take?</span>
+          <span class="accordion-trigger__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-body">
+          <p data-i18n="faq.pay.a2">Payment verification typically takes between 1 and 4 business hours. If your transfer was made outside business hours, it will be reviewed the following working day. You'll receive a push notification once confirmed.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="accordion-trigger__q" data-i18n="faq.pay.q3">Can I get a refund?</span>
+          <span class="accordion-trigger__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-body">
+          <p data-i18n="faq.pay.a3">Refunds are available within 7 days of purchase for physical books that haven't been shipped yet, or for e-books with verified technical issues. To request one, contact our team via the Contact Us form with your order ID and reason.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="accordion-trigger__q" data-i18n="faq.pay.q4">Is my payment information secure?</span>
+          <span class="accordion-trigger__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-body">
+          <p data-i18n="faq.pay.a4">Yes. Livria does not store any banking credentials. For third-party processors like Izipay, all transactions are handled under their own encrypted, PCI-compliant infrastructure. We only store a confirmation reference for your records.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DELIVERY -->
+  <section class="faq-section" id="delivery" data-category="delivery">
+    <div class="faq-section__header">
+      <div class="faq-section__icon faq-section__icon--del"><i class="fas fa-truck-fast"></i></div>
+      <h2 class="faq-section__title" data-i18n="faq.delivery.title">Shipping & Delivery</h2>
+    </div>
+    <div class="accordion">
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="accordion-trigger__q" data-i18n="faq.del.q1">How long does shipping take?</span>
+          <span class="accordion-trigger__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-body">
+          <p data-i18n="faq.del.a1">Standard delivery within Lima takes 2–4 business days after payment confirmation. Orders to other regions in Peru may take 5–8 business days. Express options may be available depending on your area.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="accordion-trigger__q" data-i18n="faq.del.q2">How can I track my order?</span>
+          <span class="accordion-trigger__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-body">
+          <p data-i18n="faq.del.a2">Once your order is dispatched, you'll receive a tracking number via push notification and email. You can also check the status in real time from the "My Orders" section inside the app.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="accordion-trigger__q" data-i18n="faq.del.q3">Are there pick-up points available?</span>
+          <span class="accordion-trigger__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-body">
+          <p data-i18n="faq.del.a3">Yes. During checkout you can select "Pick-up at a local point" and choose the nearest location using our integrated map. This option is free of charge and usually available within 1–2 business days.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="accordion-trigger__q" data-i18n="faq.del.q4">What happens if my book arrives damaged?</span>
+          <span class="accordion-trigger__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-body">
+          <p data-i18n="faq.del.a4">If your physical book arrives damaged, take a photo of the packaging and the damage and contact us within 48 hours of delivery. We'll arrange a replacement or a full refund at no extra cost to you.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SUBSCRIPTIONS -->
+  <section class="faq-section" id="subscriptions" data-category="subscriptions">
+    <div class="faq-section__header">
+      <div class="faq-section__icon faq-section__icon--sub"><i class="fas fa-star"></i></div>
+      <h2 class="faq-section__title" data-i18n="faq.subs.title">Subscriptions</h2>
+    </div>
+    <div class="accordion">
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="accordion-trigger__q" data-i18n="faq.sub.q1">What does a Livria subscription include?</span>
+          <span class="accordion-trigger__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-body">
+          <p data-i18n="faq.sub.a1">A Livria subscription gives you unlimited access to our e-book catalog, exclusive discounts on physical books, early access to new releases, and priority customer support. Premium members also enjoy an ad-free experience and advanced reading analytics.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="accordion-trigger__q" data-i18n="faq.sub.q2">How does subscription billing work?</span>
+          <span class="accordion-trigger__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-body">
+          <p data-i18n="faq.sub.a2">Subscriptions are renewed monthly. You authorize a monthly bank transfer for the subscription amount. You'll receive a reminder 3 days before the renewal date so you can make the transfer on time and avoid any interruption.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="accordion-trigger__q" data-i18n="faq.sub.q3">Can I cancel my subscription at any time?</span>
+          <span class="accordion-trigger__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-body">
+          <p data-i18n="faq.sub.a3">Yes. You can cancel anytime from "Settings → Subscription" in the app. Your benefits will remain active until the end of the current billing period, after which your account reverts to the free plan with no charges.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="accordion-trigger__q" data-i18n="faq.sub.q4">What happens to my downloaded e-books if I cancel?</span>
+          <span class="accordion-trigger__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-body">
+          <p data-i18n="faq.sub.a4">E-books you individually purchased remain yours permanently. Books accessed through the subscription catalog will no longer be available after cancellation, but your reading progress is saved should you decide to resubscribe.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="accordion-trigger__q" data-i18n="faq.sub.q5">Is there a free trial?</span>
+          <span class="accordion-trigger__icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-body">
+          <p data-i18n="faq.sub.a5">Yes! New users get a 14-day free trial of the Premium subscription. No payment required to start — simply activate it from the Subscription section in the app. You'll be notified before the trial ends.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact banner -->
+  <div class="contact-banner">
+    <div class="contact-banner__text">
+      <h3 data-i18n="faq.banner.title">Didn't find your answer?</h3>
+      <p data-i18n="faq.banner.desc">Send us a message and we'll get back to you within 24 hours.</p>
+    </div>
+    <a href="index.html#contact" class="contact-banner__btn" data-i18n="faq.banner.btn">CONTACT US</a>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="color-bar">
+    <div class="color-bar__section color-bar__section--orange"></div>
+    <div class="color-bar__section color-bar__section--yellow"></div>
+    <div class="color-bar__section color-bar__section--light-yellow"></div>
+    <div class="color-bar__section color-bar__section--dark-blue"></div>
+    <div class="color-bar__section color-bar__section--light"></div>
+    <div class="color-bar__section color-bar__section--teal"></div>
+    <div class="color-bar__section color-bar__section--blue"></div>
+  </div>
+
+  <div class="footer__container">
+    <div class="footer__columns">
+      <div class="footer__column">
+        <div class="footer__logo">
+          <img src="public/assets/images/logo/app_web/logo_icon.svg" alt="Livria Logo">
+        </div>
+        <p class="footer__description" data-i18n="footer.tagline">Discover the joy of reading in a vibrant literary community.</p>
+        <div class="footer__social">
+          <a href="https://www.facebook.com/LIVRIA" class="footer__social-link" aria-label="Facebook" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+
+          <a href="https://x.com/LIVRIA" class="footer__social-link" aria-label="Twitter" target="_blank">
+            <i class="fab fa-twitter"></i>
+          </a>
+
+          <a href="https://www.instagram.com/livria_bydefontes?igsh=MWI4a2s4ZWkwbzVpcA==" class="footer__social-link" aria-label="Instagram" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+
+          <a href="https://www.linkedin.com/company/LIVRIA" class="footer__social-link" aria-label="LinkedIn" target="_blank">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__column">
+        <h3 class="footer__heading" data-i18n="footer.navigation">Navigation</h3>
+        <ul class="footer__links">
+          <li><a href="#home" class="footer__link" data-i18n="nav.home">Home</a></li>
+          <li><a href="#services" class="footer__link" data-i18n="nav.services">Services</a></li>
+          <li><a href="#about" class="footer__link" data-i18n="nav.about">About us</a></li>
+          <li><a href="#contact" class="footer__link" data-i18n="nav.contact">Contact us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__column">
+        <h3 class="footer__heading" data-i18n="footer.legal">Legal</h3>
+        <ul class="footer__links">
+          <li><a href="#" class="footer__link" data-legal="terms" data-i18n="footer.terms">Terms and Conditions</a></li>
+          <li><a href="#" class="footer__link" data-legal="privacy" data-i18n="footer.privacy">Privacy Policy</a></li>
+          <li><a href="#" class="footer__link" data-legal="cookies" data-i18n="footer.cookies">Cookies Policy</a></li>
+          <li><a href="#" class="footer__link" data-legal="complaints" data-i18n="footer.complaints">Complaints Book</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__column">
+        <h3 class="footer__heading" data-i18n="footer.support">Support</h3>
+        <ul class="footer__links">
+          <li><a href="help.html" class="footer__link" data-i18n="footer.help">Help</a></li>
+          <li><a href="faq.html" class="footer__link" data-i18n="footer.faq">Frequent Questions</a></li>
+          <li><a href="index.html#contact" class="footer__link" data-i18n="footer.contactUs">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copyright" data-i18n="footer.copyright">© 2026 Defontes - Livria. All rights reserved.</p>
+      <div class="footer__language-selector">
+        <button class="language-btn footer__language-btn" data-lang="en" aria-pressed="true">EN</button>
+        <button class="language-btn footer__language-btn" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div id="legalModal" class="modal">
+  <div class="modal__content">
+    <span class="modal__close">&times;</span>
+    <div id="modalBody">
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="public/assets/scripts/i18n.js"></script>
+<script src="public/assets/scripts/index.js"></script>
+
+</body>
+</html>

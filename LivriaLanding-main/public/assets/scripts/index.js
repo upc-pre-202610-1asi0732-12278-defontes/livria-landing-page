@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
 
-        // ── Formulario de Reclamaciones (solo si aplica) ──
+        // ── Formulario de Reclamaciones ──
         const complaintsBtn = document.getElementById('complaintsSubmitBtn');
         if (complaintsBtn) {
           complaintsBtn.addEventListener('click', async () => {
@@ -224,6 +224,84 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // ──────────────────── FAQ ────────────────────
+  // ── Accordion ──
+  document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const item = trigger.closest('.accordion-item');
+      const body = item.querySelector('.accordion-body');
+      const isOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.accordion-item.open').forEach(openItem => {
+        openItem.classList.remove('open');
+        openItem.querySelector('.accordion-body').style.maxHeight = '0';
+      });
+
+      // Open clicked (if it was closed)
+      if (!isOpen) {
+        item.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // ── Filter tabs ──
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+
+      document.querySelectorAll('.faq-section').forEach(section => {
+        if (filter === 'all' || section.dataset.category === filter) {
+          section.style.display = '';
+        } else {
+          section.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // ── Scroll to section from URL hash ──
+  if (window.location.hash) {
+    const target = document.querySelector(window.location.hash);
+    if (target) {
+      setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 300);
+    }
+  }
+
+  // ──────────────────── HEADER CONFIG ────────────────────
+  const observerOptions = {
+    root: null, // usa el viewport
+    rootMargin: '-80px 0px -20% 0px',
+    threshold: 0.5
+  };
+
+  const observerCallback = (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+
+        document.querySelectorAll('.header__nav-link').forEach(link => {
+          link.classList.remove('active');
+          // Si el href coincide con el id actual, le ponemos active
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+  const sectionsToWatch = ['home', 'services', 'about', 'contact'];
+  sectionsToWatch.forEach(id => {
+    const section = document.getElementById(id);
+    if (section) observer.observe(section);
+  });
 
 });
 
