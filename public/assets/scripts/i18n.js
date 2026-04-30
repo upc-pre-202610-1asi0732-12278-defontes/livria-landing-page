@@ -2,6 +2,7 @@
 const i18n = {
     // English (default)
     en: {
+        'download':'Download now!'
         'nav.home': 'Home',
         'nav.services': 'Services',
         'nav.about': 'About us',
@@ -302,6 +303,7 @@ const i18n = {
     },
     // Spanish
     es: {
+        'download':'¡Descarga ahora!'
         'nav.home': 'Inicio',
         'nav.services': 'Servicios',
         'nav.about': 'Sobre nosotros',
