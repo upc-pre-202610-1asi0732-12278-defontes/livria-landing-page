@@ -92,78 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── Delegación de eventos ────────────────────────────────
   document.addEventListener('click', (e) => {
 
-    // Popups Legales
-    const legalLink = e.target.closest('.footer__link[data-legal]');
-    if (legalLink) {
-      e.preventDefault();
-      const type      = legalLink.getAttribute('data-legal');
-      const modal     = document.getElementById('legalModal');
-      const modalBody = document.getElementById('modalBody');
-      const content   = window.i18n?.[currentLanguage]?.[`legal.${type}.content`];
-
-      if (modal && modalBody && content) {
-        modalBody.innerHTML = content;
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-
-        // ── Formulario de Reclamaciones ──
-        const complaintsBtn = document.getElementById('complaintsSubmitBtn');
-        if (complaintsBtn) {
-          complaintsBtn.addEventListener('click', async () => {
-            const form     = document.getElementById('complaintsForm');
-            const fullName = form.querySelector('[name="fullName"]').value.trim();
-            const email    = form.querySelector('[name="email"]').value.trim();
-            const reason   = form.querySelector('[name="contactReason"]').value.trim();
-            const phone    = form.querySelector('[name="phone"]').value.trim();
-            const orderId  = form.querySelector('[name="orderId"]').value.trim();
-            const consent  = form.querySelector('#complaintConsent').checked;
-
-            if (!fullName || !email || !reason || !consent) {
-              alert(currentLanguage === 'es'
-                  ? 'Por favor completa todos los campos obligatorios.'
-                  : 'Please fill in all required fields.');
-              return;
-            }
-
-            complaintsBtn.disabled = true;
-            complaintsBtn.textContent = '...';
-
-            try {
-              await emailjs.send('service_4t97z5d', 'template_mq4xh6g', {
-                full_name : fullName,
-                email     : email,
-                reason    : `[COMPLAINT] Order: ${orderId || 'N/A'} — ${reason}`,
-                form_type : 'Complaints Book',
-                my_file   : `Phone: ${phone || 'N/A'}`
-              });
-
-              form.innerHTML = `
-                <div class="contact__success-message">
-                  ${window.i18n[currentLanguage]['contact.success']}
-                </div>`;
-            } catch (err) {
-              console.error(err);
-              complaintsBtn.disabled = false;
-              complaintsBtn.textContent = currentLanguage === 'es' ? 'ENVIAR' : 'SEND';
-            }
-          });
-        }
-      }
-      return;
-    }
-
-    // Cerrar Modal
-    const modal = document.getElementById('legalModal');
-    if (modal && modal.style.display === 'block') {
-      if (e.target.classList.contains('modal__close') || e.target === modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-      }
-    }
-
     // Smooth Scroll
     const scrollLink = e.target.closest('a[href^="#"]');
-    if (scrollLink && !scrollLink.hasAttribute('data-legal')) {
+    if (scrollLink) {
       const targetId = scrollLink.getAttribute('href');
       if (targetId === '#') return;
       e.preventDefault();
@@ -332,5 +263,3 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
-
-window.i18n = i18n;
