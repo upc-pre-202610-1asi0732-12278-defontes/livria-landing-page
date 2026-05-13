@@ -61,7 +61,7 @@ const i18n = {
         "legal.terms.content": `
             <div class="legal-content">
                 <h2>Livria — Terms and Conditions</h2>
-                <p><strong>Last updated:</strong> May 12, 2026 · <strong>Version:</strong> 1.2</p>
+                <p><strong>Last updated:</strong> May 12, 2026 · <strong>Version:</strong> 1.3</p>
                 <p><strong>Company:</strong> Defontes S.A.C. · <strong>Product:</strong> Livria mobile application · <strong>Contact:</strong> support@defontes.com · <strong>Address:</strong> Av. República de Chile 661, Lima, Peru</p>
                 <p>Welcome. These Terms govern use of the Livria mobile application and related services provided by Defontes S.A.C. By registering or using the Service you confirm that you have read and accept these Terms and the Privacy Policy. If you do not agree, do not use the Service.</p>
                 <h3>1. Definitions</h3>
@@ -72,6 +72,7 @@ const i18n = {
                     <li><strong>Order:</strong> a purchase request placed through the Platform.</li>
                     <li><strong>Coverage area (physical delivery):</strong> Metropolitan Lima, Peru, unless the checkout flow states otherwise.</li>
                 </ul>
+                <p><strong>Platform scope:</strong> The Livria consumer app covered by these Terms is provided for <strong>Android</strong> (for example via APK or other distribution channels published by Defontes). A native <strong>iOS</strong> client (App Store / TestFlight) is <strong>out of scope</strong> for the current release; any future iOS offering would require an explicit update to these Terms or to the <a href="acuerdo-saas.html" target="_blank" rel="noopener">SaaS Agreement</a>.</p>
                 <h3>2. Account and security</h3>
                 <p>You must provide truthful data and keep your username and password confidential. You are responsible for activity under your account. Report unauthorized use without delay. The app may use local storage on your device (preferences or session) for proper operation.</p>
                 <h3>3. Privacy and data</h3>
@@ -104,7 +105,7 @@ const i18n = {
                 <h3>Full contractual framework</h3>
                 <p>These Terms are complemented by the full <a href="acuerdo-saas.html" target="_blank" rel="noopener">Livria SaaS Agreement</a>, which sets out the main contractual framework. We encourage you to read it before accepting.</p>
                 <p><strong>Acceptance:</strong> by checking the acceptance box at registration you confirm that you have read these Terms, the Privacy Policy, and the full SaaS Agreement.</p>
-                <p>Livria © 2026 Defontes S.A.C. · Terms and Privacy summary v1.2</p>
+                <p>Livria © 2026 Defontes S.A.C. · Terms and Privacy summary v1.3</p>
             </div>
         `,
         "legal.privacy.content": `
@@ -362,7 +363,7 @@ const i18n = {
         "legal.terms.content": `
             <div class="legal-content">
                 <h2>Livria — Términos y Condiciones</h2>
-                <p><strong>Última actualización:</strong> 12 de mayo de 2026 · <strong>Versión:</strong> 1.2</p>
+                <p><strong>Última actualización:</strong> 12 de mayo de 2026 · <strong>Versión:</strong> 1.3</p>
                 <p><strong>Empresa:</strong> Defontes S.A.C. · <strong>Producto:</strong> aplicación móvil Livria · <strong>Contacto:</strong> support@defontes.com · <strong>Domicilio:</strong> Av. República de Chile 661, Lima, Perú</p>
                 <p>Bienvenido/a. Estos Términos regulan el uso de la aplicación móvil Livria y los servicios asociados, prestados por Defontes S.A.C. Al registrarte o usar el Servicio declaras haber leído y aceptado estos Términos y la Política de privacidad. Si no estás de acuerdo, no utilices el Servicio.</p>
                 <h3>1. Definiciones</h3>
@@ -373,6 +374,7 @@ const i18n = {
                     <li><strong>Pedido:</strong> solicitud de compra de productos realizada a través de la Plataforma.</li>
                     <li><strong>Zona de cobertura (entrega física):</strong> Lima Metropolitana, Perú, salvo indicación distinta en el flujo de compra.</li>
                 </ul>
+                <p><strong>Alcance de plataformas:</strong> la aplicación Livria regulada por estos Términos se ofrece para <strong>Android</strong> (por ejemplo mediante APK u otros canales publicados por Defontes). Un cliente nativo para <strong>iOS</strong> (App Store / TestFlight) <strong>no forma parte del alcance</strong> de la versión actual; un eventual despliegue en iOS requeriría actualizar expresamente estos documentos o el <a href="acuerdo-saas.html" target="_blank" rel="noopener">Acuerdo SaaS</a>.</p>
                 <h3>2. Cuenta y seguridad</h3>
                 <p>Debes proporcionar datos veraces y mantener la confidencialidad de tu usuario y contraseña. Eres responsable de las actividades realizadas con tu cuenta. Notifica de inmediato cualquier uso no autorizado. La aplicación puede usar almacenamiento local en tu dispositivo (preferencias o sesión) para el correcto funcionamiento del Servicio.</p>
                 <h3>3. Privacidad y datos</h3>
@@ -405,7 +407,7 @@ const i18n = {
                 <h3>Marco contractual completo</h3>
                 <p>Estos Términos se complementan con el <a href="acuerdo-saas.html" target="_blank" rel="noopener">Acuerdo SaaS completo de Livria</a>, que constituye el marco contractual principal. Te recomendamos leerlo antes de aceptar.</p>
                 <p><strong>Aceptación:</strong> al marcar la casilla de aceptación en el registro confirmas haber leído estos Términos, la Política de Privacidad y el Acuerdo SaaS completo.</p>
-                <p>Livria © 2026 Defontes S.A.C. · Resumen Términos y Privacidad v1.2</p>
+                <p>Livria © 2026 Defontes S.A.C. · Resumen Términos y Privacidad v1.3</p>
             </div>
         `,
         "legal.privacy.content": `
